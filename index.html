@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" href="http://patspicker.patsfans.com/favicon.ico" type='image/x-icon'/>
+	<title>Pats Picker 2012</title>
+	<link rel="stylesheet" href="jquery-ui-1.8.19.custom/css/blitzer/jquery-ui-1.8.19.custom.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+<style>
+*{
+	font-family: 'century gothic', sans-serif;
+}
+body{
+	background-color: #0e254e;
+}
+ol{
+	list-style: none;
+}
+ul { 
+	list-style-type: none; 
+	margin: auto; 
+	padding: 0; 
+	margin-right: 10px; 
+	background: #eee; 
+	padding: 5px; 
+	width: 143px;
+}
+li { 
+	margin: 5px; 
+	padding: 5px; 
+	font-size: 0.7em; 
+	width: 120px; 
+}
+li:hover{
+	cursor:move;
+}
+table{
+	margin: auto;
+}
+td{
+	vertical-align: top;
+}
+hr{
+	margin-top:2px;
+	margin-bottom: 2px;
+}
+h1{
+	text-align: left;
+	text-shadow: 2px 2px 2px #d6d6d6;
+	color: #0e254e;
+}
+span{
+	font-weight: bold;
+	overflow: visible;
+	white-space: nowrap;
+}
+h5{
+	text-align: left;
+	text-shadow: 1px 1px 1px #d6d6d6;
+	color: #0e254e;
+	margin-bottom: 6px;
+}
+h4{
+	text-align: left;
+	text-shadow: 1px 1px 1px #d6d6d6;
+	color: #0e254e;
+	margin: 0px;
+	padding: 0px;
+}
+.bench>li{
+	color:grey;
+	border: 1px dashed #d6d6d6;
+}
+.on>li{
+	color: #c3001e;
+	border: 1px solid #d6d6d6;
+}
+
+.pos{	
+	width: 170px;
+	float: left;
+	display: block;
+}
+.btn{
+	border-radius: 2px;
+	cursor: pointer;
+	font-size: 0.7em;
+	font-weight: bold;
+	text-align: center;
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-bottom: 0px;
+	margin-top:0px;
+	height: 27px;
+	width: 70px;
+	line-height: 27px;
+	background-color: #EEE;
+	float: left;
+}
+#all{
+	width: 900px;
+	border: 1px solid black;
+	margin:auto;
+}
+#offense, #defense, #text_output{
+	width:890px;
+}
+#result_field{
+	font-size: 0.7em;
+	font-family: courier;
+}
+#tabs_list{
+	width: 1000px;
+}
+#tally{
+	font-size: 25px;
+}
+#create_player_form{
+	width: 400px;
+}
+#contact_me_button{
+	width: 100%;
+	float:left;
+}
+#logo{
+	position: absolute;
+	left: 70%;
+	top: 0%;
+}
+#header{
+	height: 180px;
+}
+.fb-like{
+	height: 400px;
+}
+</style>
+	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="jquery-ui-1.8.19.custom/js/jquery-ui-1.8.19.custom.min.js"></script>
+	<script type="text/javascript" src="modernizr.custom.56367.js"></script>
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32832344-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+	</script>
+</head>
+
+
+
+<body>
+<div id="all">
+	<div id="header">
+		<img id="logo" src="patspicker2012animation.gif" alt="Picking Pats"/>
+		<h1>Pats Picker 2012 : Picking the 53</h1>
+		<h5 id="players_picked">Total Players Picked:&nbsp;<span id="tally"><span id="players_tally">0</span>/53</span><br/>Drag and drop players above or below the line to add or remove them from the team.<br/>The orderings are reflected in your results and your selections will automatically save.</h5>
+		<div id="reset-button" class="btn ui-state-default ui-corner-top">Reset</div>
+	</div><!-- header -->
+
+		<ol>
+			<li><a href="#offense">Offense</a></li>
+			<li><a href="#defense">Defense & ST</a></li>
+			<li id="my_results"><a href="#text_output">My Results</a></li>
+			<li><a href="#create_player">Create Player</a></li>
+			<li><a href="#about">[About]</a></li>
+		</ol>
+
+
+	<div id="offense">
+		
+		<table>
+		<tr>
+	
+		<td>
+			<div id="qb" class="pos">
+				<h4>Quarterback</h4>
+				<ul id="qb-on" class="qb-list on">
+					<li id="Tom_Brady" class="ui-state-default" position="QB">Tom Brady</li>
+				</ul>
+				<hr/>
+				<ul id="qb-bench" class="qb-list bench">
+					<li id="Ryan_Mallett" class="ui-state-default" position="QB">Ryan Mallett</li>
+					<li id="Brian_Hoyer" class="ui-state-default" position="QB">Brian Hoyer</li>
+					<!-- <li id="Mike_Hartline" class="ui-state-default" position="QB">Mike Hartline</li> -->
+				</ul>
+			</div><!-- qb -->	
+		</td>
+
+		<td>
+			<div id="rb" class="pos">
+				<h4>Running Back</h4>
+				<ul id="rb-on" class="rb-list on">
+					<li id="Danny_Woodhead" class="ui-state-default" position="RB">Danny Woodhead</li>
+				</ul>
+				<hr/>
+				<ul id="rb-bench" class="rb-list bench">
+					<li id="Stevan_Ridley" class="ui-state-default" position="RB">Stevan Ridley</li>
+					<li id="Shane_Vereen" class="ui-state-default" position="RB">Shane Vereen</li>
+					<li id="Joseph_Addai" class="ui-state-default" position="RB">Joseph Addai</li>
+					<li id="Eric_Kettani" class="ui-state-default" position="RB">Eric Kettani</li>
+					<li id="Tony_Fiammetta" class="ui-state-default" position="RB">Tony Fiammetta</li>
+					<li id="Spencer_Larsen" class="ui-state-default" position="RB">Spencer Larsen</li>
+					<li id="Brandon_Bolden" class="ui-state-default" position="RB">Brandon Bolden</li>
+					
+				</ul>
+
+				<br clear="both" />
+			</div><!-- rb -->	
+		</td>
+		
+		<td>
+			<div id="te" class="pos">
+				<h4>Tight End</h4>
+				<ul id="te-on" class="te-list on receivers">
+					<li id="Rob_Gronkowski" class="ui-state-default" position="TE">Rob Gronkowski</li>
+				</ul>
+				
+				<hr/>
+				<ul id="te-bench" class="te-list bench receivers">
+					<li id="Aaron_Hernandez" class="ui-state-default" position="TE">Aaron Hernandez</li>
+					<li id="Jake_Ballard" class="ui-state-default" position="TE">Jake Ballard</li>
+					<!--<li id="Bo_Scaife" class="ui-state-default" position="TE">Bo Scaife</li>-->
+					<li id="Daniel_Fells" class="ui-state-default" position="TE">Daniel Fells</li>
+					<li id="Jesse_Holley" class="ui-state-default" position="TE">Jesse Holley</li>
+					<!--<li id="Brad_Herman" class="ui-state-default" position="TE">Brad Herman</li>-->
+					<!--<li id="Nick_Melillo" class="ui-state-default" position="TE">Nick Melillo</li>-->
+					
+				</ul>
+
+				<br clear="both" />
+			</div><!-- te -->	
+		</td>
+		
+		<td rowspan=2>
+			<div id="wr" class="pos">
+				<h4>Wide Receiver</h4>
+				<ul id="wr-on" class="wr-list on receivers">
+					<li id="Wes_Welker" class="ui-state-default" position="WR">Wes Welker</li>
+				</ul>
+				<hr/>
+				<ul id="wr-bench" class="wr-list bench receivers">
+					<li id="Brandon_Lloyd" class="ui-state-default" position="WR">Brandon Lloyd</li>
+					<li id="Deion_Branch" class="ui-state-default" position="WR">Deion Branch</li>
+					<!--<li id="Chad_Ochocinco" class="ui-state-default" position="WR">Chad Ochocinco</li>-->
+					<li id="Matthew_Slater" class="ui-state-default" position="WR">Matthew Slater</li>
+					<li id="Julian_Edelman" class="ui-state-default" position="WR">Julian Edelman</li>
+					<!--<li id="Anthony_Gonzalez" class="ui-state-default" position="WR">Anthony Gonzalez</li>-->
+					<li id="Donte_Stallworth" class="ui-state-default" position="WR">Donte Stallworth</li>
+					<li id="Jabar_Gaffney" class="ui-state-default" position="WR">Jabar Gaffney</li>
+					<li id="Jeremy_Ebert" class="ui-state-default" position="WR">Jeremy Ebert</li>
+					<li id="Britt_Davis" class="ui-state-default" position="WR">Britt Davis</li>
+					<li id="Matt_Roark" class="ui-state-default" position="WR">Matt Roark</li>
+					<li id="Tyler_Urban" class="ui-state-default" position="WR">Tyler Urban</li>
+					 
+				</ul>
+				<br clear="both" />
+			</div><!-- wr -->	
+		</td>
+		</tr>
+
+		<tr>
+		<td>
+			<div id="c" class="pos">
+				<h4>Center</h4>
+				<ul id="c-on" class="c-list on oline">
+					<li id="Dan_Koppen" class="ui-state-default" position="C">Dan Koppen</li>
+				</ul>
+				<hr/>
+				<ul id="c-bench" class="c-list bench oline">
+					<li id="Ryan_Wendell" class="ui-state-default" position="C">Ryan Wendell</li>
+				</ul>
+				<br clear="both" />
+			</div><!-- c -->	
+		</td>
+		
+		<td>
+			<div id="g" class="pos">
+				<h4>Guard</h4>
+				<ul id="g-on" class="g-list on oline">
+					<li id="Logan_Mankins" class="ui-state-default" position="G">Logan Mankins</li>
+				</ul>
+				<hr/>
+				<ul id="g-bench" class="g-list bench oline">
+					<li id="Brian_Waters" class="ui-state-default" position="G">Brian Waters</li>
+					<li id="Dan_Connolly" class="ui-state-default" position="G">Dan Connolly</li>
+					<li id="Robert_Gallery" class="ui-state-default" position="G">Robert Gallery</li>
+					<li id="Donald_Thomas" class="ui-state-default" position="G">Donald Thomas</li>
+					<li id="Kyle_Hix" class="ui-state-default" position="G">Kyle Hix</li>
+					<li id="Nick_McDonald" class="ui-state-default" position="G">Nick McDonald</li>
+					<!--<li id="Mike_Ingersoll" class="ui-state-default" position="G">Mike Ingersoll</li>-->
+				</ul>
+				<br clear="both" />
+			</div><!-- g -->	
+		</td>
+			
+		<td>
+			<div id="t" class="pos">
+				<h4>Tackle</h4>
+				<ul id="t-on" class="t-list on oline">
+					<li id="Sebastian_Vollmer" class="ui-state-default" position="T">Sebastian Vollmer</li>
+				</ul>
+				<hr/>
+				<ul id="t-bench" class="t-list bench oline">
+					<li id="Nate_Solder" class="ui-state-default" position="T">Nate Solder</li>
+					<li id="Marcus_Cannon" class="ui-state-default" position="T">Marcus Cannon</li>
+					<li id="Mat_Kopa" class="ui-state-default" position="T">Mat Kopa</li>
+					<li id="Jeremiah_Warren" class="ui-state-default" position="T">Jeremiah Warren</li>
+					<li id="Markus_Zusevics" class="ui-state-default" position="T">Markus Zusevics</li>
+					<!--<li id="Jon_Opperud" class="ui-state-default" position="T">Jon Opperud</li>-->
+					<li id="Jamey_Richard" class="ui-state-default" position="T">Jamey Richard</li>
+					
+					
+				</ul>
+				<br clear="both" />
+			</div><!-- t -->	
+		</td>
+		</tr>
+		</table>
+
+	</div><!-- offense -->
+		
+
+	<div id="defense">
+		<table>
+		<tr>
+		<td>
+		<div id="de" class="pos">
+			<h4>Defensive End</h4>
+			<ul id="de-on" class="de-list on dline">
+			</ul>
+			<hr/>
+			<ul id="de-bench" class="de-list bench dline">
+				<li id="Chandler_Jones" class="ui-state-default" position="DE">Chandler Jones</li>
+				<li id="Ron_Brace" class="ui-state-default" position="DE">Ron Brace</li>
+				<li id="Brandon_Deaderick" class="ui-state-default" position="DE">Brandon Deaderick</li>
+				<li id="Jonathan_Fanene" class="ui-state-default" position="DE">Jonathan Fanene</li>
+				<li id="Jake_Bequette" class="ui-state-default" position="DE">Jake Bequette</li>
+				<li id="Trevor_Scott" class="ui-state-default" position="DE">Trevor Scott</li>
+				<li id="Alex_Silvestro" class="ui-state-default" position="DE">Alex Silvestro</li>
+			</ul>
+			<br clear="both" />
+		</div><!-- de -->	
+		</td>
+		
+		<td>
+		<div id="dt" class="pos">
+			<h4>Defensive Tackle</h4>
+			<ul id="dt-on" class="dt-list on dline">
+				<li id="Vince_Wilfork" class="ui-state-default" position="DT">Vince Wilfork</li>
+			</ul>
+			<hr/>
+			<ul id="dt-bench" class="dt-list bench dline">
+				<li id="Kyle_Love" class="ui-state-default" position="DT">Kyle Love</li>
+				<li id="Gerard_Warren" class="ui-state-default" position="DT">Gerard Warren</li>
+				<li id="Myron_Pryor" class="ui-state-default" position="DT">Myron Pryor</li>
+				<li id="Aaron_Lavarias" class="ui-state-default" position="DT">Aaron Lavarias</li>
+				<li id="Marcus_Harrison" class="ui-state-default" position="DT">Marcus Harrison</li>
+				<li id="Marcus_Forston" class="ui-state-default" position="DT">Marcus Forston</li>
+				<li id="Justin_Francis" class="ui-state-default" position="DT">Justin Francis</li>
+				
+				
+			</ul>
+			<br clear="both" />
+		</div><!-- dt -->	
+		</td>
+		
+		<td>
+		<div id="ilb" class="pos">
+			<h4>Inside Linebacker</h4>
+			<ul id="ilb-on" class="ilb-list on dline">
+				<li id="Jerod_Mayo" class="ui-state-default" position="ILB">Jerod Mayo</li>
+			</ul>
+			<hr/>
+			<ul id="ilb-bench" class="ilb-list bench dline">
+				<li id="Brandon_Spikes" class="ui-state-default" position="ILB">Brandon Spikes</li>
+				<li id="Donta_Hightower" class="ui-state-default" position="ILB">Donta Hightower</li>
+				<!--<li id="Markell_Carter" class="ui-state-default" position="ILB">Markell Carter</li>-->
+				<li id="Dane_Fletcher" class="ui-state-default" position="ILB">Dane Fletcher</li>
+				<li id="Niko_Koutouvides" class="ui-state-default" position="ILB">Niko Koutouvides</li>
+				<li id="Mike_Rivera" class="ui-state-default" position="ILB">Mike Rivera</li>
+				<li id="Jeff_Tarpinian" class="ui-state-default" position="ILB">Jeff Tarpinian</li>
+				<li id="Tracy_White" class="ui-state-default" position="ILB">Tracy White</li>
+			</ul>
+			<br clear="both" />
+		</div><!-- ilb -->	
+		</td>
+		
+		<td>
+		<div id="olb" class="pos">
+			<h4>Outside Linebacker</h4>
+			<ul id="olb-on" class="olb-list on dline">
+			</ul>
+			<hr/>
+			<ul id="olb-bench" class="olb-list bench dline">
+				<li id="Bobby_Carpenter" class="ui-state-default" position="OLB">Bobby Carpenter</li>
+				<li id="Rob_Ninkovich" class="ui-state-default" position="OLB">Rob Ninkovich</li>
+				<li id="Jermaine_Cunningham" class="ui-state-default" position="OLB">Jermaine Cunningham</li>
+			</ul>
+			<br clear="both" />
+		</div><!-- olb -->	
+		</td>
+		</tr>
+		
+		<tr>
+		<td>
+		<div id="cb" class="pos">
+			<h4>Cornerback</h4>
+			<ul id="cb-on" class="cb-list on dback">
+				<li id="Devin_McCourty" class="ui-state-default" position="CB">Devin McCourty</li>
+			</ul>
+			<hr/>
+			<ul id="cb-bench" class="cb-list bench dback">
+				<li id="Ras-I_Dowling" class="ui-state-default" position="CB">Ras-I Dowling</li>
+				<li id="Sterling_Moore" class="ui-state-default" position="CB">Sterling Moore</li>
+				<li id="Will_Allen" class="ui-state-default" position="CB">Will Allen</li>
+				<li id="Kyle_Arrington" class="ui-state-default" position="CB">Kyle Arrington</li>
+				<li id="Alfonzo_Dennard" class="ui-state-default" position="CB">Alfonzo Dennard</li>
+				<li id="Josh_Barrett" class="ui-state-default" position="CB">Josh Barrett</li>
+				<li id="Marquice_Cole" class="ui-state-default" position="CB">Marquice Cole</li>
+				<li id="Nate_Ebner" class="ui-state-default" position="CB">Nate Ebner</li>
+				<li id="Ross_Ventrone" class="ui-state-default" position="CB">Ross Ventrone</li>
+				<li id="Malcolm_Williams" class="ui-state-default" position="CB">Malcolm Williams</li>
+			</ul>
+			<br clear="both" />
+		</div><!-- cb -->	
+		</td>
+		
+		<td>
+		<div id="ss" class="pos">
+			<h4>Strong Safety</h4>
+			<ul id="ss-on" class="ss-list on dback">
+			</ul>
+			<hr/>
+			<ul id="ss-bench" class="ss-list bench dback">
+				<li id="Sergio_Brown" class="ui-state-default" position="SS">Sergio Brown</li>
+				<li id="Steve_Gregory" class="ui-state-default" position="SS">Steve Gregory</li>
+				<li id="James_Ihedigbo" class="ui-state-default" position="SS">James Ihedigbo</li>
+				
+			</ul>
+			<br clear="both" />
+		</div><!-- ss -->	
+		</td>
+		
+		<td>
+		<div id="fs" class="pos">
+			<h4>Free Safety</h4>
+			<ul id="fs-on" class="fs-list on dback">
+				<li id="Patrick_Chung" class="ui-state-default" position="FS">Patrick Chung</li>
+			</ul>
+			<hr/>
+			<ul id="fs-bench" class="fs-list bench dback">
+				<li id="Tavon_Wilson" class="ui-state-default" position="FS">Tavon Wilson</li>
+			</ul>
+			<br clear="both" />
+		</div><!-- fs -->	
+		</td>
+	<td>
+	
+		<div id="st">
+			<h4>Special Teams</h4>
+			<ul id="st-on" class="stlist on">
+				<li id="Stephen_Gostkowski" class="ui-state-default" position="ST">Stephen Gostkowski</li>
+			</ul>
+			<hr/>
+			<ul id="st-bench" class="stlist bench">
+				<li id="Danny_Aiken" class="ui-state-default" position="ST">Danny Aiken</li>
+				<li id="Zoltan_Mesko" class="ui-state-default" position="ST">Zoltan Mesko</li>
+				<li id="Chris_Koepplin" class="ui-state-default" position="ST">Chris Koepplin</li>
+			</ul>
+			<br clear="both" />
+		</div><!-- st -->	
+	</td>
+	</tr>
+	</table>
+	</div><!--defense-->
+
+	
+	<div id="text_output">
+		<h4>Copy (Ctrl+C) and paste (Ctrl+V) your results to anywhere you like: </h4>
+		<textarea id="result_field" class="outputfield" rows="30" cols="110" readonly="readonly">&nbsp;</textarea>
+	</div>
+	
+	<div id="create_player">
+		<form id="create_player_form">
+			<fieldset>	
+				<legend><h4>Enter Player Info to Add a Custom Player</h4></legend>
+				<ol>
+					<li>
+						<label for="firstname"><h4>First Name:</h4></label>
+						<input id="firstname" type="text" name="firstname" required autofocus/>
+					</li>
+					<li>
+						<label for="lastname"><h4>Last Name:</h4></label>
+						<input id="lastname" type="text" name="lastname" required autofocus/>
+					</li>
+					<li>
+						<label for="position"><h4>Position:</h4></label>
+						<select id="position">
+							<option value="qb">QB</option>
+							<option value="rb">RB</option>
+							<option value="wr">WR</option>
+							<option value="te">TE</option>
+							<option value="c">C</option>
+							<option value="g">G</option>
+							<option value="t">T</option>
+							<option value="de">DE</option>
+							<option value="dt">DT</option>
+							<option value="ilb">ILB</option>
+							<option value="olb">OLB</option>
+							<option value="cb">CB</option>
+							<option value="ss">SS</option>
+							<option value="fs">FS</option>
+							<option value="st">P/K/LS</option>
+						</select>
+					</li>
+				</ol>
+				<h5 id="player_added_alert">&nbsp;</h5>
+				<div id="add_player_button" class="btn ui-state-default ui-corner-top">Add Player</div>
+			</fieldset>
+		</form>
+	</div><!--create_player-->
+	
+	<div id="about">
+		<h5>Pats Picker was developed by <a href="http://www.brendanstubbs.com">Brendan Stubbs</a>, 2012<br/>
+			Official roster as of: 6/22/2012.  Rosters maintained by Matt Monitto.<br/></h5>
+	</div><!---about--->
+	
+	<div id="welcome_back" title="Welcome Back to Pats Picker">
+		<h5>Your team has been reloaded from your last visit.</h5>
+	</div><!--welcome_back-->
+	
+</div><!-- all -->
+</body>
+
+
+<script>
+$(function() { //on document ready
+
+// HOTFIX: We can't upgrade to jQuery UI 1.8.6 (yet)
+		// This hotfix makes older versions of jQuery UI drag-and-drop work in IE9
+(function($){var a=$.ui.mouse.prototype._mouseMove;$.ui.mouse.prototype._mouseMove=function(b){if($.browser.msie&&document.documentMode>=9){b.button=1};a.apply(this,[b]);}}(jQuery));
+	
+////SET UP LISTS FOR LINKING
+$("ul, li").disableSelection(); //disable raw text selection
+
+$("ul").sortable({
+	cursor: "move",
+	scroll: "true"
+});
+
+$("ul.qb-list").sortable({
+	connectWith: "ul.qb-list"
+});
+
+$("ul.rb-list").sortable({
+	connectWith: "ul.rb-list"
+});
+
+$("ul.receivers").sortable({
+	connectWith: "ul.receivers"
+});
+
+$("ul.oline").sortable({
+	connectWith: "ul.oline"
+});
+
+$("ul.dline").sortable({
+	connectWith: "ul.dline"
+});
+
+$("ul.dback").sortable({
+	connectWith: "ul.dback"
+});
+
+$("ul.stlist").sortable({
+	connectWith: "ul.stlist"
+});
+
+
+function highlightList(ul_string){
+	$(ul_string).css({opacity:0.2}).css({backgroundColor:'#D14836', color:'white'}).animate({opacity:1}, 400);
+}
+
+function dehighlightList(){
+	$("ul").css({opacity:0.2}).css({backgroundColor:'#EEE', color:'white'}).animate({opacity:1}, 400);
+}
+
+$("ul").sortable({
+	activate: function(event, ui){ //triggered on drag start
+		switch(ui.item.attr("position")){
+			case "QB": highlightList('#qb-on'); break;
+			case "RB": highlightList('#rb-on'); break;
+			case "WR": highlightList('#wr-on'); highlightList('#te-on'); break;
+			case "TE": highlightList('#wr-on'); highlightList('#te-on'); break;
+			case "C": highlightList('#c-on'); highlightList('#g-on');highlightList('#t-on');break;
+			case "G": highlightList('#c-on'); highlightList('#g-on');highlightList('#t-on');break;
+			case "T": highlightList('#c-on'); highlightList('#g-on');highlightList('#t-on');break;
+			case "DE": highlightList('#de-on'); highlightList('#dt-on');highlightList('#ilb-on');highlightList('#olb-on');break;
+			case "DT": highlightList('#de-on'); highlightList('#dt-on');highlightList('#ilb-on');highlightList('#olb-on');break;
+			case "ILB": highlightList('#de-on'); highlightList('#dt-on');highlightList('#ilb-on');highlightList('#olb-on');break;
+			case "OLB": highlightList('#de-on'); highlightList('#dt-on');highlightList('#ilb-on');highlightList('#olb-on');break;
+			case "CB": highlightList('#cb-on'); highlightList('#ss-on'); highlightList('#fs-on');break;
+			case "SS": highlightList('#cb-on'); highlightList('#ss-on'); highlightList('#fs-on');break;
+			case "FS": highlightList('#cb-on'); highlightList('#ss-on'); highlightList('#fs-on');break;
+			case "ST": highlightList('#st-on'); break;
+		};
+	}
+});
+
+$("ul").sortable({
+	deactivate: function(event, ui){
+		dehighlightList();
+	}
+});
+
+////UPDATE SAVED LISTS
+$("ul").sortable({
+	update: function(event, ui){ //triggered when the ul is updated
+		updateTextOutput();
+		if (Modernizr.localstorage){ //if localstorage is available
+		saveOrders();
+		}
+	}
+});
+			
+function saveOrders(){
+	var qbOnOrder = $("#qb-on").sortable("toArray").join();
+	var qbBenchOrder = $("#qb-bench").sortable("toArray").join();
+	window.localStorage.setItem("qb-on-order", qbOnOrder);
+	window.localStorage.setItem("qb-bench-order", qbBenchOrder);
+	
+	var rbOnOrder = $("#rb-on").sortable("toArray").join();
+	var rbBenchOrder = $("#rb-bench").sortable("toArray").join();
+	window.localStorage.setItem("rb-on-order", rbOnOrder);
+	window.localStorage.setItem("rb-bench-order", rbBenchOrder);
+	
+	var wrOnOrder = $("#wr-on").sortable("toArray").join();
+	var wrBenchOrder = $("#wr-bench").sortable("toArray").join();
+	window.localStorage.setItem("wr-on-order", wrOnOrder);
+	window.localStorage.setItem("wr-bench-order", wrBenchOrder);
+	
+	var teOnOrder = $("#te-on").sortable("toArray").join();
+	var teBenchOrder = $("#te-bench").sortable("toArray").join();
+	window.localStorage.setItem("te-on-order", teOnOrder);
+	window.localStorage.setItem("te-bench-order", teBenchOrder);
+	
+	var cOnOrder = $("#c-on").sortable("toArray").join();
+	var cBenchOrder = $("#c-bench").sortable("toArray").join();
+	window.localStorage.setItem("c-on-order", cOnOrder);
+	window.localStorage.setItem("c-bench-order", cBenchOrder);
+	
+	var gOnOrder = $("#g-on").sortable("toArray").join();
+	var gBenchOrder = $("#g-bench").sortable("toArray").join();
+	window.localStorage.setItem("g-on-order", gOnOrder);
+	window.localStorage.setItem("g-bench-order", gBenchOrder);
+	
+	var tOnOrder = $("#t-on").sortable("toArray").join();
+	var tBenchOrder = $("#t-bench").sortable("toArray").join();
+	window.localStorage.setItem("t-on-order", tOnOrder);
+	window.localStorage.setItem("t-bench-order", tBenchOrder);
+	
+	var deOnOrder = $("#de-on").sortable("toArray").join();
+	var deBenchOrder = $("#de-bench").sortable("toArray").join();
+	window.localStorage.setItem("de-on-order", deOnOrder);
+	window.localStorage.setItem("de-bench-order", deBenchOrder);
+	
+	var dtOnOrder = $("#dt-on").sortable("toArray").join();
+	var dtBenchOrder = $("#dt-bench").sortable("toArray").join();
+	window.localStorage.setItem("dt-on-order", dtOnOrder);
+	window.localStorage.setItem("dt-bench-order", dtBenchOrder);
+	
+	var ilbOnOrder = $("#ilb-on").sortable("toArray").join();
+	var ilbBenchOrder = $("#ilb-bench").sortable("toArray").join();
+	window.localStorage.setItem("ilb-on-order", ilbOnOrder);
+	window.localStorage.setItem("ilb-bench-order", ilbBenchOrder);
+	
+	var olbOnOrder = $("#olb-on").sortable("toArray").join();
+	var olbBenchOrder = $("#olb-bench").sortable("toArray").join();
+	window.localStorage.setItem("olb-on-order", olbOnOrder);
+	window.localStorage.setItem("olb-bench-order", olbBenchOrder);
+	
+	var cbOnOrder = $("#cb-on").sortable("toArray").join();
+	var cbBenchOrder = $("#cb-bench").sortable("toArray").join();
+	window.localStorage.setItem("cb-on-order", cbOnOrder);
+	window.localStorage.setItem("cb-bench-order", cbBenchOrder);
+	
+	var ssOnOrder = $("#ss-on").sortable("toArray").join();
+	var ssBenchOrder = $("#ss-bench").sortable("toArray").join();
+	window.localStorage.setItem("ss-on-order", ssOnOrder);
+	window.localStorage.setItem("ss-bench-order", ssBenchOrder);
+	
+	var fsOnOrder = $("#fs-on").sortable("toArray").join();
+	var fsBenchOrder = $("#fs-bench").sortable("toArray").join();
+	window.localStorage.setItem("fs-on-order", fsOnOrder);
+	window.localStorage.setItem("fs-bench-order", fsBenchOrder);
+	
+	var stOnOrder = $("#st-on").sortable("toArray").join();
+	var stBenchOrder = $("#st-bench").sortable("toArray").join();
+	window.localStorage.setItem("st-on-order", stOnOrder);
+	window.localStorage.setItem("st-bench-order", stBenchOrder);
+
+	window.localStorage.setItem("saved-order", "true");
+	console.log("saved order");
+};
+
+////APPEND SAVED LISTS
+function appendPlayerList(localStorageKey, divToAppend){
+	var posOrder = window.localStorage.getItem(localStorageKey);
+	if (posOrder){
+		$.each(posOrder.split(","), function(i, id){
+			var posDiv = $("#"+divToAppend);
+			$("#"+id).appendTo(posDiv); console.log("appended "+id);
+		});
+	}
+}
+
+if ((Modernizr.localstorage) && (window.localStorage.getItem("saved-order")))
+{
+
+	appendPlayerList("qb-on-order", "qb-on");
+	appendPlayerList("qb-bench-order", "qb-bench");
+	appendPlayerList("rb-on-order", "rb-on");
+	appendPlayerList("rb-bench-order", "rb-bench");
+	appendPlayerList("wr-on-order", "wr-on");
+	appendPlayerList("wr-bench-order", "wr-bench");
+	appendPlayerList("te-on-order", "te-on");
+	appendPlayerList("te-bench-order", "te-bench");
+	appendPlayerList("c-on-order", "c-on");
+	appendPlayerList("c-bench-order", "c-bench");
+	appendPlayerList("g-on-order", "g-on");
+	appendPlayerList("g-bench-order", "g-bench");
+	appendPlayerList("t-on-order", "t-on");
+	appendPlayerList("t-bench-order", "t-bench");
+	appendPlayerList("de-on-order", "de-on");
+	appendPlayerList("de-bench-order", "de-bench");
+	appendPlayerList("dt-on-order", "dt-on");
+	appendPlayerList("dt-bench-order", "dt-bench");
+	appendPlayerList("ilb-on-order", "ilb-on");
+	appendPlayerList("ilb-bench-order", "ilb-bench");
+	appendPlayerList("olb-on-order", "olb-on");
+	appendPlayerList("olb-bench-order", "olb-bench");
+	appendPlayerList("cb-on-order", "cb-on");
+	appendPlayerList("cb-bench-order", "cb-bench");
+	appendPlayerList("ss-on-order", "ss-on");
+	appendPlayerList("ss-bench-order", "ss-bench");
+	appendPlayerList("fs-on-order", "fs-on");
+	appendPlayerList("fs-bench-order", "fs-bench");
+	appendPlayerList("st-on-order", "st-on");
+	appendPlayerList("st-bench-order", "st-bench");
+};
+
+////PRINT RESULTS
+function replaceAll(txt, replace, with_this) {
+  return txt.replace(new RegExp(replace, 'g'),with_this);
+};
+
+function flashRed(){
+	$("#players_tally").stop().css({color:"white"}).animate({color:"#c3001e"}, 100);
+};
+
+var flash;
+var flashing = false;
+var updateTextOutput = function(){
+	var QBs = $("#qb-on").sortable("toArray");
+	var RBs = $("#rb-on").sortable("toArray");
+	var WRs = $("#wr-on").sortable("toArray");
+	var TEs = $("#te-on").sortable("toArray");
+	var Cs = $("#c-on").sortable("toArray");
+	var Gs = $("#g-on").sortable("toArray");
+	var Ts = $("#t-on").sortable("toArray");
+	var DEs = $("#de-on").sortable("toArray");
+	var DTs = $("#dt-on").sortable("toArray");
+	var ILBs = $("#ilb-on").sortable("toArray");
+	var OLBs = $("#olb-on").sortable("toArray");
+	var CBs = $("#cb-on").sortable("toArray");
+	var SSs = $("#ss-on").sortable("toArray");
+	var FSs = $("#fs-on").sortable("toArray");
+	var STs = $("#st-on").sortable("toArray");
+	var PUPs = $("#qb-on").sortable("toArray");
+	var totalPlayersPicked = QBs.length + RBs.length + WRs.length + TEs.length + Cs.length + Gs.length + Ts.length + DEs.length + DTs.length + ILBs.length + OLBs.length + CBs.length + SSs.length + FSs.length + STs.length;
+		
+	document.getElementById("result_field").value = "QB ("+QBs.length+") "+replaceAll(QBs.join(", "), "_", " ")+"\n"+
+	"RB ("+RBs.length+") "+replaceAll(RBs.join(", "), "_", " ")+"\n"+
+	"WR ("+WRs.length+") "+replaceAll(WRs.join(", "), "_", " ")+"\n"+
+	"TE ("+TEs.length+") "+replaceAll(TEs.join(", "), "_", " ")+"\n"+
+	"C  ("+Cs.length+") "+replaceAll(Cs.join(", "), "_", " ")+"\n"+
+	"G  ("+Gs.length+") "+replaceAll(Gs.join(", "), "_", " ")+"\n"+
+	"T  ("+Ts.length+") "+replaceAll(Ts.join(", "), "_", " ")+"\n"+
+	"DE ("+DEs.length+") "+replaceAll(DEs.join(", "), "_", " ")+"\n"+
+	"DT ("+DTs.length+") "+replaceAll(DTs.join(", "), "_", " ")+"\n"+
+	"ILB("+ILBs.length+") "+replaceAll(ILBs.join(", "), "_", " ")+"\n"+
+	"OLB("+OLBs.length+") "+replaceAll(OLBs.join(", "), "_", " ")+"\n"+
+	"CB ("+CBs.length+") "+replaceAll(CBs.join(", "), "_", " ")+"\n"+
+	"SS ("+SSs.length+") "+replaceAll(SSs.join(", "), "_", " ")+"\n"+
+	"FS ("+FSs.length+") "+replaceAll(FSs.join(", "), "_", " ")+"\n"+
+	"ST ("+STs.length+") "+replaceAll(STs.join(", "), "_", " ")+"\n\n"+
+	"Total players: "+totalPlayersPicked+"\n"+
+	"Created with Pats Picker: http://patspicker.patsfans.com";
+
+	$("#players_tally").html(totalPlayersPicked);
+	if (totalPlayersPicked > 53 && flashing===false){
+		flash = setInterval(flashRed, 500);
+		flashing = true;
+	}
+	else if (totalPlayersPicked <= 53){
+		clearInterval(flash);
+		$("#players_tally").css({color:"#0e254e"});
+		flashing = false;
+	} 
+};
+updateTextOutput();
+
+////ADD PLAYER
+$("#add_player_button").bind("click", function(){
+	var first = $("#firstname").val();
+	var last = $("#lastname").val();
+	var position = $("#position").val();
+	
+	$("#firstname").val("");
+	$("#lastname").val("");
+
+	$("#add_player_button").css({opacity:0.2}).css({backgroundColor:'#EEE'}).animate({opacity:1}, 500);
+	
+	var newPlayerElem = "<li id=" + "'" + first + "_" + last + "'" + " class='ui-state-default' position=" + "'" + position + "'" + ">" + first + " " + last + "</li>";
+	switch(position){
+		case "qb": $('#qb-bench').append(newPlayerElem); break;
+		case "rb": $('#rb-bench').append(newPlayerElem); break;
+		case "wr": $('#wr-bench').append(newPlayerElem); break;
+		case "te": $('#te-bench').append(newPlayerElem); break;
+		case "c": $('#c-bench').append(newPlayerElem); break;
+		case "g": $('#g-bench').append(newPlayerElem); break;
+		case "t": $('#t-bench').append(newPlayerElem); break;
+		case "de": $('#de-bench').append(newPlayerElem); break;
+		case "dt": $('#dt-bench').append(newPlayerElem); break;
+		case "ilb": $('#ilb-bench').append(newPlayerElem); break;
+		case "olb": $('#olb-bench').append(newPlayerElem); break;
+		case "cb": $('#cb-bench').append(newPlayerElem); break;
+		case "ss": $('#ss-bench').append(newPlayerElem); break;
+		case "fs": $('#fs-bench').append(newPlayerElem); break;
+		case "st": $('#st-bench').append(newPlayerElem); break;
+	}
+	
+	$("#player_added_alert").html(first+ " " + last + " added");
+	$("#player_added_alert").css({opacity:0}).animate({opacity:1}, 200).delay(200).animate({opacity:0}, 200);
+	saveOrders();
+});
+
+////RESET
+$("#reset-button").bind("click", function(){
+	if (Modernizr.localstorage){localStorage.clear();}
+	location.reload(true);
+});
+
+////TABS
+$( "#all" ).tabs();
+$("#all").tabs({selected:0});
+
+////LOAD PAGE AT TOP
+$(document).scrollTop(0);
+
+////AUTOSELECT TEXT
+if (!($.browser.msie)){
+	document.getElementById("result_field").select();
+	$("#all").tabs({
+		select: function(event, ui){
+			document.getElementById("result_field").select();
+		}
+	});
+}
+
+////DIALOG
+$("#welcome_back").dialog({
+	modal: true,
+	autoOpen : false,
+	buttons: {
+		Ok: function() {
+			$( this ).dialog( "close" );
+		}
+		
+	}
+});
+
+if (window.localStorage.getItem('saved-order')){
+	$("#welcome_back").dialog("open");
+}
+}); //end onready
+
+</script>
+
+
+
+</html>
